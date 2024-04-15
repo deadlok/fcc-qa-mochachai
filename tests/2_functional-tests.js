@@ -28,8 +28,8 @@ suite('Functional Tests', function () {
         .keepOpen()
         .get('/hello?name=xy_z')
         .end(function (err, res) {
-          assert.strictEqual(res.status, 200);
-          assert.strictEqual(res.text, 'hello xy_z');
+          assert.equal(res.status, 200);
+          assert.equal(res.text, 'hello xy_z');
           done();
         });
     });
