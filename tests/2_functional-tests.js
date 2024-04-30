@@ -39,12 +39,20 @@ suite('Functional Tests', function () {
         .request(server)
         .keepOpen()
         .put('/travellers')
-
+        .send({
+          surname: "Colombo"
+        })
         .end(function (err, res) {
           assert.equal(res.status, 200);
-          assert.equal(res.header.content-type,'application/json')
-          assert.equal(res.body.name, 'Cristoforo')
-          assert.equal(res.body.surname, 'Colombo')
+          assert.equal(res.header["content-type"].split(";",1), 'application/json')
+          assert.equal(res.body.name,'Cristoforo')
+          assert.equal(res.body.surname,'Colombo')
+          //console.log(JSON.stringify(res.body.name))
+          //console.log(JSON.stringify(res.header["content-type"].split(";",1)))
+          //console.log('response body:' + JSON.stringify(res.body))
+          //console.log('body-surname:'+res.body.surname)
+          //assert.equal(res.body.name, 'Cristoforo')
+          //assert.equal(res.body.surname, 'Colombo')
           done();
         });
     });
